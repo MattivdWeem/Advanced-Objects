@@ -3,6 +3,7 @@
 namespace MattivdWeem\AdvancedObjects\Types;
 
 use MattivdWeem\AdvancedObjects\AdvancedObjects;
+use MattivdWeem\AdvancedObjects\Exceptions\TypeMatchException;
 
 class String extends AdvancedObjects{
 
@@ -16,6 +17,9 @@ class String extends AdvancedObjects{
      * @param $value
      */
     public function __construct($value){
+        if (!is_string($value)) {
+            throw new TypeMatchException(gettype($value),'String');
+        }
         $this->fill($value);
     }
 
@@ -53,12 +57,18 @@ class String extends AdvancedObjects{
 
     /**
      * Sorts the current String
+     * @param string $mode
      * @return $this
-     *
      */
-    public function sort(){
+    public function sort($mode = '>'){
         $data = $this->value;
-        sort($data);
+
+        if ($mode === '<' || strtoupper($mode) === 'DESC') {
+            rsort($data);
+        } else {
+            sort($data);
+        }
+
         $this->value = $data;
         return $this;
     }
