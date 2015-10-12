@@ -2,7 +2,22 @@
 
 Simple object manipulation using strict rules, each object will be handled strict. and has a couple of extra usefull functions.
 
-## Strings
+## Why?
+Strictly typed languages have great advantages for multi disciplined teams.
+With a simple class creation your objects will be on steroids. `$a = 'just a string'` `$a = new String('just a string on steroids');`
+
+.. some text around why, what and more information
+
+## installation
+
+.. installation notes here
+
+## simple example here
+
+## types
+There are multiple types defined, ... information about types here
+
+### Strings
     <?php
 
     use MattivdWeem\AdvancedObjects\Types\String;
@@ -14,3 +29,5 @@ Simple object manipulation using strict rules, each object will be handled stric
     echo $myString;
 
 This example will create a string, the string will be shuffled and sorted (yes very useful, i know).
+
+
