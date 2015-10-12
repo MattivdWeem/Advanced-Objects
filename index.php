@@ -36,6 +36,9 @@ $x
     ->replace('fox','cow')
     ->replace('dog','fox')
     ->add(' | ')
+    ->trim('fox')
+    ->ltrim('the')
+    ->rtrim(' | ')
     ->attach('-> ');
 
 // obtain the length of the string and print it behind the string
@@ -44,3 +47,15 @@ println($x .'['.$x->length().']');
 // add a String to the end of the string
 $x->add(new String('This is my new string'));
 println($x);
+
+$y = new String('abc');
+println($y);
+
+$y->rtrim('c');
+println($y);
+
+$y->ltrim('a');
+println($y);
+
+$y->trim('b');
+println($y);

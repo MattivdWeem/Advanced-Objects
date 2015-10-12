@@ -114,6 +114,37 @@ class String extends AdvancedObjects implements TypeInterface{
         return $this;
     }
 
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function trim($value){
+        $data = $this->getString();
+        $data = trim($data, $value);
+        $this->fill($data);
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function rtrim($value){
+        $data = rtrim($this->getString(), $value);
+        $this->fill($data);
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function ltrim($value){
+        $data = ltrim($this->getString(), $value);
+        $this->fill($data);
+        return $this;
+    }
+
 
     /**
      * @return string
