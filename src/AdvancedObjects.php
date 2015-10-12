@@ -3,5 +3,4 @@ namespace MattivdWeem\AdvancedObjects;
 class AdvancedObjects {
 
 
-
 }

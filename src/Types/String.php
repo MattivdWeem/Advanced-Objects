@@ -5,16 +5,13 @@ namespace MattivdWeem\AdvancedObjects\Types;
 use MattivdWeem\AdvancedObjects\AdvancedObjects;
 use MattivdWeem\AdvancedObjects\Exceptions\TypeMatchException;
 
-class String extends AdvancedObjects{
+class String extends AdvancedObjects implements TypeInterface{
 
-    /**
-     * @var array
-     */
-    private $value = [];
-
+    private $value;
     /**
      * __constructor
      * @param $value
+     * @throws TypeMatchException
      */
     public function __construct($value){
         if (!is_string($value)) {
@@ -29,6 +26,24 @@ class String extends AdvancedObjects{
      */
     private function fill($value){
         $this->value =  str_split($value);
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function add($value){
+        $this->fill($this->getString().$value);
+        return $this;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function attach($value){
+        $this->fill($value.$this->getString());
+        return $this;
     }
 
     /**
@@ -74,9 +89,69 @@ class String extends AdvancedObjects{
     }
 
     /**
+     * @return $this
+     */
+    public function shift(){
+        unset($this->value[0]);
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function pop(){
+        unset($this->value[count($this->value) -1 ]);
+        return $this;
+    }
+
+    /**
+     * @param $string
+     * @param $replace
+     * @return $this
+     */
+    public function replace($string, $replace){
+        $this->fill(str_replace($string, $replace, $this->getString()));
+        return $this;
+    }
+
+
+    /**
      * @return string
      */
     public function __toString(){
         return $this->getString();
     }
+
+    /**
+     * @return mixed
+     */
+    public function __toArray(){
+        return $this->value;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function length(){
+        return count($this->value);
+    }
+
+    /**
+     * @return array
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param array $value
+     * @return mixed|void
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
 }
